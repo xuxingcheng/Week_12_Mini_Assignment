@@ -1,0 +1,78 @@
+== Physical Plan ==
+AdaptiveSparkPlan (12)
++- HashAggregate (11)
+   +- Exchange (10)
+      +- HashAggregate (9)
+         +- Project (8)
+            +- BroadcastHashJoin Inner BuildRight (7)
+               :- Project (3)
+               :  +- Filter (2)
+               :     +- Scan parquet  (1)
+               +- BroadcastExchange (6)
+                  +- Filter (5)
+                     +- Scan csv  (4)
+
+
+(1) Scan parquet 
+Output [5]: [pickup_datetime#5, PULocationID#7, trip_miles#9, trip_time#10L, base_passenger_fare#11]
+Batched: true
+Location: InMemoryFileIndex [file:/Users/stevenxu/Desktop/IDS706/week12/Week_12_Mini_Assignment/data/fhvhv_tripdata_2024-01.parquet, ... 2 entries]
+PushedFilters: [IsNotNull(pickup_datetime), IsNotNull(trip_miles), IsNotNull(base_passenger_fare), IsNotNull(trip_time), GreaterThanOrEqual(pickup_datetime,2024-01-01T00:00), LessThan(pickup_datetime,2024-04-01T00:00), GreaterThan(trip_miles,0.0), GreaterThan(base_passenger_fare,0.0), GreaterThanOrEqual(trip_time,60), LessThanOrEqual(trip_time,10800), IsNotNull(PULocationID)]
+ReadSchema: struct<pickup_datetime:timestamp_ntz,PULocationID:int,trip_miles:double,trip_time:bigint,base_passenger_fare:double>
+
+(2) Filter
+Input [5]: [pickup_datetime#5, PULocationID#7, trip_miles#9, trip_time#10L, base_passenger_fare#11]
+Condition : ((((((((((isnotnull(pickup_datetime#5) AND isnotnull(trip_miles#9)) AND isnotnull(base_passenger_fare#11)) AND isnotnull(trip_time#10L)) AND (pickup_datetime#5 >= 2024-01-01 00:00:00)) AND (pickup_datetime#5 < 2024-04-01 00:00:00)) AND (trip_miles#9 > 0.0)) AND (base_passenger_fare#11 > 0.0)) AND (trip_time#10L >= 60)) AND (trip_time#10L <= 10800)) AND isnotnull(PULocationID#7))
+
+(3) Project
+Output [5]: [PULocationID#7, trip_miles#9, base_passenger_fare#11, date_format(cast(pickup_datetime#5 as timestamp), yyyy-MM, Some(America/New_York)) AS pickup_month#65, (cast(trip_time#10L as double) / 60.0) AS duration_minutes#80]
+Input [5]: [pickup_datetime#5, PULocationID#7, trip_miles#9, trip_time#10L, base_passenger_fare#11]
+
+(4) Scan csv 
+Output [2]: [LocationID#48, Borough#49]
+Batched: false
+Location: InMemoryFileIndex [file:/Users/stevenxu/Desktop/IDS706/week12/Week_12_Mini_Assignment/data/taxi_zone_lookup.csv]
+PushedFilters: [In(Borough, [Bronx,Brooklyn,Manhattan,Queens,Staten Island]), IsNotNull(LocationID)]
+ReadSchema: struct<LocationID:int,Borough:string>
+
+(5) Filter
+Input [2]: [LocationID#48, Borough#49]
+Condition : (Borough#49 IN (Manhattan,Brooklyn,Queens,Bronx,Staten Island) AND isnotnull(LocationID#48))
+
+(6) BroadcastExchange
+Input [2]: [LocationID#48, Borough#49]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)),false), [plan_id=35]
+
+(7) BroadcastHashJoin
+Left keys [1]: [PULocationID#7]
+Right keys [1]: [LocationID#48]
+Join type: Inner
+Join condition: None
+
+(8) Project
+Output [5]: [trip_miles#9, base_passenger_fare#11, pickup_month#65, duration_minutes#80, Borough#49]
+Input [7]: [PULocationID#7, trip_miles#9, base_passenger_fare#11, pickup_month#65, duration_minutes#80, LocationID#48, Borough#49]
+
+(9) HashAggregate
+Input [5]: [trip_miles#9, base_passenger_fare#11, pickup_month#65, duration_minutes#80, Borough#49]
+Keys [2]: [pickup_month#65, Borough#49]
+Functions [4]: [partial_count(1), partial_sum(base_passenger_fare#11), partial_avg(trip_miles#9), partial_avg(duration_minutes#80)]
+Aggregate Attributes [6]: [count#133L, sum#134, sum#135, count#136L, sum#137, count#138L]
+Results [8]: [pickup_month#65, Borough#49, count#139L, sum#140, sum#141, count#142L, sum#143, count#144L]
+
+(10) Exchange
+Input [8]: [pickup_month#65, Borough#49, count#139L, sum#140, sum#141, count#142L, sum#143, count#144L]
+Arguments: hashpartitioning(pickup_month#65, Borough#49, 16), ENSURE_REQUIREMENTS, [plan_id=40]
+
+(11) HashAggregate
+Input [8]: [pickup_month#65, Borough#49, count#139L, sum#140, sum#141, count#142L, sum#143, count#144L]
+Keys [2]: [pickup_month#65, Borough#49]
+Functions [4]: [count(1), sum(base_passenger_fare#11), avg(trip_miles#9), avg(duration_minutes#80)]
+Aggregate Attributes [4]: [count(1)#119L, sum(base_passenger_fare#11)#121, avg(trip_miles#9)#123, avg(duration_minutes#80)#125]
+Results [6]: [pickup_month#65, Borough#49, count(1)#119L AS trips#120L, sum(base_passenger_fare#11)#121 AS total_base_fare#122, avg(trip_miles#9)#123 AS avg_miles#124, avg(duration_minutes#80)#125 AS avg_minutes#126]
+
+(12) AdaptiveSparkPlan
+Output [6]: [pickup_month#65, Borough#49, trips#120L, total_base_fare#122, avg_miles#124, avg_minutes#126]
+Arguments: isFinalPlan=false
+
+

@@ -1,0 +1,16 @@
+== Physical Plan ==
+* ColumnarToRow (2)
++- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [6]: [Borough#1178, trips#1179L, total_base_fare#1180, avg_miles#1181, avg_minutes#1182, pickup_month#1183]
+Batched: true
+Location: InMemoryFileIndex [file:/Users/stevenxu/Desktop/IDS706/week12/Week_12_Mini_Assignment/output/monthly_borough]
+PartitionFilters: [isnotnull(pickup_month#1183), (pickup_month#1183 = 2024-01)]
+ReadSchema: struct<Borough:string,trips:bigint,total_base_fare:double,avg_miles:double,avg_minutes:double>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [6]: [Borough#1178, trips#1179L, total_base_fare#1180, avg_miles#1181, avg_minutes#1182, pickup_month#1183]
+
+

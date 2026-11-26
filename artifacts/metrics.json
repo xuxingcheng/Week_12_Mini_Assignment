@@ -1,0 +1,295 @@
+{
+  "spark_version": "3.5.8",
+  "master": "local[4]",
+  "input_bytes": 1443173535,
+  "raw_rows": 60303866,
+  "valid_rows": 60269688,
+  "excluded_rows": 34178,
+  "monthly_output_rows": 15,
+  "lazy_demo": {
+    "jobs_before": 0,
+    "jobs_after_transformations": 0,
+    "jobs_after_action": 3
+  },
+  "timings_seconds": {
+    "uncached_first": 4.456979166949168,
+    "uncached_repeat": 4.067858666996472,
+    "cache_materialization": 4.1751901670359075,
+    "cached_first": 0.03055691602639854,
+    "cached_repeat": 0.02517583395820111,
+    "hourly_query": 1.6348892910173163
+  },
+  "cache_repeat_speedup": 161.57791133156695,
+  "monthly_results": [
+    {
+      "pickup_month": "2024-01",
+      "Borough": "Bronx",
+      "trips": 2367256,
+      "total_base_fare": 43844710.09000337,
+      "avg_miles": 4.290350978094524,
+      "avg_minutes": 15.854187675519723
+    },
+    {
+      "pickup_month": "2024-01",
+      "Borough": "Brooklyn",
+      "trips": 5105023,
+      "total_base_fare": 105907251.15999766,
+      "avg_miles": 4.048067898029071,
+      "avg_minutes": 17.835946576538493
+    },
+    {
+      "pickup_month": "2024-01",
+      "Borough": "Manhattan",
+      "trips": 7858936,
+      "total_base_fare": 207283258.82997954,
+      "avg_miles": 4.701329072917747,
+      "avg_minutes": 19.06932502482925
+    },
+    {
+      "pickup_month": "2024-01",
+      "Borough": "Queens",
+      "trips": 4037885,
+      "total_base_fare": 107953368.95999622,
+      "avg_miles": 6.394323659291955,
+      "avg_minutes": 20.006929291778807
+    },
+    {
+      "pickup_month": "2024-01",
+      "Borough": "Staten Island",
+      "trips": 281488,
+      "total_base_fare": 5773500.110000117,
+      "avg_miles": 5.133449653271187,
+      "avg_minutes": 15.413179425055398
+    },
+    {
+      "pickup_month": "2024-02",
+      "Borough": "Bronx",
+      "trips": 2398934,
+      "total_base_fare": 45021488.73000416,
+      "avg_miles": 4.3691577304753295,
+      "avg_minutes": 16.48287286491954
+    },
+    {
+      "pickup_month": "2024-02",
+      "Borough": "Brooklyn",
+      "trips": 5086244,
+      "total_base_fare": 107220577.6999917,
+      "avg_miles": 4.189038062468066,
+      "avg_minutes": 18.5257408184378
+    },
+    {
+      "pickup_month": "2024-02",
+      "Borough": "Manhattan",
+      "trips": 7746627,
+      "total_base_fare": 208977809.09997916,
+      "avg_miles": 4.86343088314434,
+      "avg_minutes": 20.001059024355737
+    },
+    {
+      "pickup_month": "2024-02",
+      "Borough": "Queens",
+      "trips": 3833838,
+      "total_base_fare": 102592381.69999647,
+      "avg_miles": 6.373064409346446,
+      "avg_minutes": 20.40972524139007
+    },
+    {
+      "pickup_month": "2024-02",
+      "Borough": "Staten Island",
+      "trips": 279387,
+      "total_base_fare": 5793139.610000036,
+      "avg_miles": 5.22856904580384,
+      "avg_minutes": 15.749885702150323
+    },
+    {
+      "pickup_month": "2024-03",
+      "Borough": "Bronx",
+      "trips": 2682458,
+      "total_base_fare": 52555045.09000165,
+      "avg_miles": 4.304446671672093,
+      "avg_minutes": 16.63967076713475
+    },
+    {
+      "pickup_month": "2024-03",
+      "Borough": "Brooklyn",
+      "trips": 5696115,
+      "total_base_fare": 125195819.90999594,
+      "avg_miles": 4.129550975533397,
+      "avg_minutes": 18.83508042177303
+    },
+    {
+      "pickup_month": "2024-03",
+      "Borough": "Manhattan",
+      "trips": 8251739,
+      "total_base_fare": 236235123.3099993,
+      "avg_miles": 4.959667853648739,
+      "avg_minutes": 20.543579622024698
+    },
+    {
+      "pickup_month": "2024-03",
+      "Borough": "Queens",
+      "trips": 4329626,
+      "total_base_fare": 122527201.11999802,
+      "avg_miles": 6.390411569267104,
+      "avg_minutes": 21.11437219981562
+    },
+    {
+      "pickup_month": "2024-03",
+      "Borough": "Staten Island",
+      "trips": 314132,
+      "total_base_fare": 6859001.440000057,
+      "avg_miles": 5.159240443507832,
+      "avg_minutes": 16.05630971481208
+    }
+  ],
+  "borough_results": [
+    {
+      "Borough": "Manhattan",
+      "trips": 23857302,
+      "avg_base_fare": 27.35
+    },
+    {
+      "Borough": "Brooklyn",
+      "trips": 15887382,
+      "avg_base_fare": 21.3
+    },
+    {
+      "Borough": "Queens",
+      "trips": 12201349,
+      "avg_base_fare": 27.3
+    },
+    {
+      "Borough": "Bronx",
+      "trips": 7448648,
+      "avg_base_fare": 18.99
+    },
+    {
+      "Borough": "Staten Island",
+      "trips": 875007,
+      "avg_base_fare": 21.06
+    }
+  ],
+  "hourly_results": [
+    {
+      "pickup_hour": 18,
+      "trips": 3683618,
+      "avg_base_fare": 23.71
+    },
+    {
+      "pickup_hour": 19,
+      "trips": 3543321,
+      "avg_base_fare": 23.24
+    },
+    {
+      "pickup_hour": 17,
+      "trips": 3478131,
+      "avg_base_fare": 24.75
+    },
+    {
+      "pickup_hour": 20,
+      "trips": 3339196,
+      "avg_base_fare": 23.82
+    },
+    {
+      "pickup_hour": 21,
+      "trips": 3199659,
+      "avg_base_fare": 24.46
+    },
+    {
+      "pickup_hour": 22,
+      "trips": 3159375,
+      "avg_base_fare": 24.67
+    },
+    {
+      "pickup_hour": 8,
+      "trips": 3122299,
+      "avg_base_fare": 23.4
+    },
+    {
+      "pickup_hour": 16,
+      "trips": 3097425,
+      "avg_base_fare": 25.94
+    },
+    {
+      "pickup_hour": 15,
+      "trips": 2987889,
+      "avg_base_fare": 26.32
+    },
+    {
+      "pickup_hour": 14,
+      "trips": 2917454,
+      "avg_base_fare": 25.76
+    },
+    {
+      "pickup_hour": 23,
+      "trips": 2832639,
+      "avg_base_fare": 24.49
+    },
+    {
+      "pickup_hour": 9,
+      "trips": 2816714,
+      "avg_base_fare": 23.38
+    },
+    {
+      "pickup_hour": 13,
+      "trips": 2681226,
+      "avg_base_fare": 25.32
+    },
+    {
+      "pickup_hour": 7,
+      "trips": 2581012,
+      "avg_base_fare": 24.7
+    },
+    {
+      "pickup_hour": 12,
+      "trips": 2576913,
+      "avg_base_fare": 24.75
+    },
+    {
+      "pickup_hour": 10,
+      "trips": 2547199,
+      "avg_base_fare": 24.0
+    },
+    {
+      "pickup_hour": 11,
+      "trips": 2495911,
+      "avg_base_fare": 24.4
+    },
+    {
+      "pickup_hour": 0,
+      "trips": 2152182,
+      "avg_base_fare": 23.64
+    },
+    {
+      "pickup_hour": 6,
+      "trips": 1672425,
+      "avg_base_fare": 26.46
+    },
+    {
+      "pickup_hour": 1,
+      "trips": 1492471,
+      "avg_base_fare": 23.01
+    },
+    {
+      "pickup_hour": 2,
+      "trips": 1069161,
+      "avg_base_fare": 23.17
+    },
+    {
+      "pickup_hour": 5,
+      "trips": 1043984,
+      "avg_base_fare": 29.03
+    },
+    {
+      "pickup_hour": 4,
+      "trips": 896807,
+      "avg_base_fare": 28.6
+    },
+    {
+      "pickup_hour": 3,
+      "trips": 882677,
+      "avg_base_fare": 25.07
+    }
+  ],
+  "total_seconds": 19.95077679096721
+}
